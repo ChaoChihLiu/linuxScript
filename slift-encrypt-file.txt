@@ -1,0 +1,4 @@
+encrypt: 
+sliftc /e "<plain file path>" "<encrpted file path>" /pfx "<your pfx file>" <passphrase> /cer "<counterpart cer file>" /verbose
+decrypt: 
+sliftc /d "<encrypted file path>" "<plain file path>" /pfx "<counterpart pfx file>" <passphrase> /cer "<your cer file>" /verbose

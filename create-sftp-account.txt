@@ -1,0 +1,35 @@
+A. config openssh
+	1. vim /etc/ssh/sshd_config
+	2. Add or modify the Subsystem sftp line to look like the following:
+	
+			   Subsystem sftp internal-sftp
+			   
+	3. Add this block of settings to the end of the file:
+	
+			   Match Group filetransfer
+    				ChrootDirectory %h
+				    X11Forwarding no
+				    AllowTcpForwarding no
+				    ForceCommand internal-sftp	
+				    	   
+    4. service ssh restart			
+    5. create new group:  groupadd filetransfer 	    
+
+B. create new account ( execute  sudo su - before following steps)
+   1.  groupadd <username>
+   2.  useradd -g filetransfer -d /home/<username> <username>
+   3.  chown root:root /home/<username>
+   4.  chmod 755 /home/<username>		
+   5.  cd /home/<username>
+   6.  mkdir input output
+   7.  chown <username>:filetransfer /home/<username>/*	
+   8.  mkdir /home/<username>/.ssh
+   9.  upload ssh public key to this .ssh folder
+       scp -i <root key> <user public key> ec2-user@<ip>:~/
+       mv <user public key> /home/<username>/.ssh/authorized_keys
+   10. chown <username>:<username> /home/<username>/.ssh
+       chown <username>:<username> /home/<username>/.ssh/authorized_keys
+       
+  
+  
+  C. https://svlada.com/ssh-public-key-authentication/          	    

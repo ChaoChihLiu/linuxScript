@@ -32,4 +32,5 @@ B. create new account ( execute  sudo su - before following steps)
        
   
   
-  C. https://svlada.com/ssh-public-key-authentication/          	    
+  C. https://svlada.com/ssh-public-key-authentication/  
+  create keypair: ssh-keygen -t rsa

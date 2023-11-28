@@ -34,3 +34,14 @@ B. create new account ( execute  sudo su - before following steps)
   
   C. https://svlada.com/ssh-public-key-authentication/  
   create keypair: ssh-keygen -t rsa
+
+  D. Restrict Users to a Specific Directory
+https://www.tecmint.com/restrict-sftp-user-home-directories-using-chroot/
+
+mkdir -p /sftpusers/chroot
+chown root:root /sftpusers/chroot/
+useradd coder -g sftp -s /sbin/nologin
+mkdir /sftpusers/chroot/coder
+chown coder:sftp /sftpusers/chroot/coder/
+chmod 700 /sftpusers/chroot/coder/
+
